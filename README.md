@@ -39,17 +39,16 @@ export default (
         {/* or Also <Text style={myStyles.myTextStyle}>'This is a simple text'</Text>*/}
     </Container>
 );
-
 ```
+
 3 - Current Output
 
 > I wish to make it prettier in future.
 ```
-Container( 
+ Container( 
       child: Text("This is a simple text", style: TextStyle(fontSize: 20)), 
-padding: 32, color: Color(0xFF000000)      
+padding: 32, color: Color(0xFF000000),      
     ),
-
 ```
 
 

@@ -45,9 +45,13 @@ function walk(comp) {
 }
 
 function renderAttrs(attrs) {
-    const _attrs = BuildAttributes(attrs, {
+    let _attrs = BuildAttributes(attrs, {
         any: '%'
     });
+
+    if (Object.keys(attrs).length > 1) {
+        _attrs += ',';
+    }
 
     return _attrs;
 }
