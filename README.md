@@ -47,8 +47,9 @@ export default (
 ```
 Container( 
       child: Text("This is a simple text", style: TextStyle(fontSize: 20)), 
-padding: 32, color: 0xFF000000      
+padding: 32, color: Color(0xFF000000)      
     ),
+
 ```
 
 
