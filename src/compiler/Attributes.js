@@ -5,7 +5,7 @@ const fetchValue = (attrs, key, replace) => {
         return;
 
     if (typeof value === 'string' && value.match(/#\d{6}/)) {
-        return value.replace(/#/, '0xFF');
+        return `Color(${value.replace(/#/, '0xFF')})`;
     }
 
     if (typeof value == 'object')
