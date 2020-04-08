@@ -9,7 +9,7 @@ As you know better <a href='https://flutter.dev'>Flutter</a> comes with dirty sy
 
 >I have Uploade my first Tests, and source code is available.
 
-
+1 - Dart File
 ```
 class HomePageView extends StatelessWidget {
   static final jsxView = "./HomePageView.jsx"; // here
@@ -20,7 +20,7 @@ class HomePageView extends StatelessWidget {
 }
 ```
 
-And JSX :) is shown bellow:
+2 - And JSX :) is shown bellow:
 
 ```
 const myStyles = {
@@ -41,5 +41,15 @@ export default (
 );
 
 ```
+3 - Current Output
+
+> I wish to make it prettier in future.
+```
+Container( 
+      child: Text(This is a simple text, style: TextStyle(fontSize: 20), test: '$widget.title'),Text("xxx"), 
+padding: 32, color: 0xFF000000      
+    ),
+```
+
 
 That's it Javascript + Flutter will kill it.
