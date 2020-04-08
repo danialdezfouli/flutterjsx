@@ -1,0 +1,9 @@
+{
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    "@babel/plugin-syntax-jsx",
+    "./src/transform/index.ts"
+  ]
+}

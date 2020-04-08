@@ -1,0 +1,14 @@
+.idea
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+bower_components
+node_modules
+*.sublime*
+
+psd
+thumb
+sketch
