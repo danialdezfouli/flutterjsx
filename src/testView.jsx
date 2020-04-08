@@ -10,7 +10,6 @@ const myStyles = {
 
 export default (
     <Container {...myStyles.myContainer}>
-        <Text style={myStyles.myTextStyle} test={"'$widget.title'"}>This is a simple text</Text>
-        <Text text={'xxx'}/>
+        <Text style={myStyles.myTextStyle}>This is a simple text</Text>
     </Container>
 );
