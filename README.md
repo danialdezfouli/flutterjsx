@@ -35,7 +35,8 @@ const myStyles = {
 
 export default (
     <Container {...myStyles.myContainer}>
-        <Text style={myStyles.myTextStyle}>This is a simple text</Text>
+        <Text style={myStyles.myTextStyle} text={'This is a simple text'}/>
+        {/* or Also <Text style={myStyles.myTextStyle}>'This is a simple text'</Text>*/}
     </Container>
 );
 
