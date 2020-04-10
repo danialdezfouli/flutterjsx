@@ -22,7 +22,7 @@ As you know <a href='https://flutter.dev'>Flutter</a> comes with dirty syntax, t
 
 and Run: 
 
-> $ flutterjx
+> $ flutterjsx
 
 1 - Flutter Widget (flutter_app/lib/HomePage.dart):
 ```
