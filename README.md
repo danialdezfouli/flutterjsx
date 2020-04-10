@@ -1,7 +1,7 @@
 # Flutter.js Transpile JSX to dart widgets
 
 [![NPM Version][npm-image]][npm-url]
-[![NPM Downloads][downloads-image]][downloads-url]
+
 
 
 > Coming soon ... (on development)
