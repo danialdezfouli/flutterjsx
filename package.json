@@ -1,15 +1,30 @@
 {
-  "name": "flutter-js",
-  "version": "1.0.0",
+  "name": "flutterjsx",
+  "version": "0.0.3",
   "description": "Jsx in Javascript View For Flutter.dart",
   "main": "src/app.ts",
+  "contributors": [
+    "Daniel Dezfouli <iamdaniald@gmail.com> (https://github.com/danialdezfouli/)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danialdezfouli/flutterjsx.git"
+  },
   "scripts": {
     "start": "nodemon -p src/app.ts",
-    "dev": "ts-node-dev --respawn --clear --watch=dart,src src/app.ts",
+    "dev": "ts-node-dev --respawn --clear --watch=lib,src src/app.ts",
     "nodemon": "nodemon src/app.ts"
   },
-  "keywords": [],
-  "author": "",
+  "bin": {
+    "flutterjsx": "npm run dev"
+  },
+  "keywords": [
+    "flutter",
+    "dart",
+    "jsx",
+    "jsx to dart"
+  ],
+  "author": "Daniel Dezfouli",
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-env": "^7.9.5"

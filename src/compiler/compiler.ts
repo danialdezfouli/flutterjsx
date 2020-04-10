@@ -1,11 +1,12 @@
 const fs = require("fs");
-// const JsFile = require("./JsFile.js");
-import DartFile from "./DartFile.ts";
+import DartFile from "./DartFile";
 
 const JS = "js";
 const DART = "dart";
 
 export default class Compiler {
+    file = '';
+    type = '';
     constructor(file) {
         this.file = file;
         if (file.match(/\.jsx?$/)) this.type = JS;

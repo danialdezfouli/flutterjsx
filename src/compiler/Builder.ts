@@ -1,4 +1,4 @@
-import {BuildAttributes} from "./Attributes";
+import {BuildAttributes} from "./AttributesBuilder";
 
 export const Text = ([, attrs, text]) => {
     if (attrs && attrs.text && !text) {

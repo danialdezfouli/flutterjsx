@@ -12,32 +12,34 @@ As you know better <a href='https://flutter.dev'>Flutter</a> comes with dirty sy
 1 - Dart File
 ```
 class HomePageView extends StatelessWidget {
-  static final jsxView = "./HomePageView.jsx"; // here
+  static final jsxView = "./HomePageView.jsx";
+  static final spaces = "  ";
 
-  build() {
-    // here will update when .jsx updated    
+  build(BuildContext context) {
   }
+  // afterBuild
 }
+
 ```
 
 2 - And JSX :) is shown bellow:
 
 ```
-const myStyles = {
-    myContainer: {
-        padding: 32,
-        color: "#000000",
-    },
-    myTextStyle: {
-        fontSize: 20,
-    },
+const style = {
+  wrapper: {
+    padding: "32.0",
+    margin: { top: 30, bottom: 10 },
+    color: "#000000",
+  },
+  text: {
+    fontSize: 20,
+  },
 };
 
 export default (
-    <Container {...myStyles.myContainer}>
-        <Text style={myStyles.myTextStyle} text={'This is a simple text'}/>
-        {/* or Also <Text style={myStyles.myTextStyle}>'This is a simple text'</Text>*/}
-    </Container>
+  <Container {...style.wrapper}>
+    <Text style={style.text} text={"This is a simple text"} />
+  </Container>
 );
 ```
 
@@ -45,10 +47,21 @@ export default (
 
 > I wish to make it prettier in future.
 ```
- Container( 
-      child: Text("This is a simple text", style: TextStyle(fontSize: 20)), 
-padding: 32, color: Color(0xFF000000),      
-    ),
+class HomePageView extends StatelessWidget {
+  static final jsxView = "./HomePageView.jsx";
+  static final spaces = "  ";
+
+  build(BuildContext context) {
+  return Container( 
+  	child: Text("This is a simple text", style: TextStyle(fontSize: 20)), 
+	padding: EdgeInsets.all(32.0),
+	margin: EdgeInsets.only(top:30, bottom:10),
+	color: Color(0xFF000000),      
+); 
+  }
+  // afterBuild
+}
+
 ```
 
 

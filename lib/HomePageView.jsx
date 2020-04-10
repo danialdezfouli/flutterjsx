@@ -1,11 +1,13 @@
 const style = {
   wrapper: {
     padding: "32.0",
-    margin: 32,
-    color: "#000000",
-  }, 
+    margin: { top: 30, bottom: 10 },
+    // color: "#f20",
+    color: "Colors.red",
+  },
   text: {
-    fontSize: 20,
+    fontSize: 21,
+    color: "#111",
   },
 };
 
