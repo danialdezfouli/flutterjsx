@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { declare } from "@babel/helper-plugin-utils";
 import jsx from "@babel/plugin-syntax-jsx";
-import helper from "../transform/HelperBuilderJsx";
+import helper from "@babel/helper-builder-react-jsx";
 import { types as t } from "@babel/core";
 
 interface PluginState {
@@ -13,7 +13,7 @@ const DEFAULT = {
   pragmaFrag: "Flutter.createElement",
 };
 
-export default declare(function (api, options) {
+export default declare(function (api: any, options: any) {
   const PRAGMA_DEFAULT = options.pragma || DEFAULT.pragma;
   const PRAGMA_FRAG_DEFAULT = options.pragmaFrag || DEFAULT.pragmaFrag;
   const PURE_ANNOTATION = options.pure;
@@ -31,14 +31,14 @@ export default declare(function (api, options) {
   };
 
   const visitor = helper({
-    pre(state) {
+    pre(state: any) {
       const tagName = state.tagName;
       const args = state.args;
 
       args.push(t.stringLiteral(tagName));
     },
 
-    post(state, pass) {
+    post(state: any, pass: any) {
       // console.log(pass.get("jsxIdentifier")());
       // state.callee = (...args) => {
       //     console.log(args);
@@ -50,7 +50,7 @@ export default declare(function (api, options) {
   });
 
   visitor.Program = {
-    enter(path, state) {
+    enter(path: any, state: any) {
       const { file } = state;
 
       let pragma = PRAGMA_DEFAULT;
@@ -80,7 +80,7 @@ export default declare(function (api, options) {
       state.set("pragmaSet", pragmaSet);
       state.set("pragmaFragSet", pragmaFragSet);
     },
-    exit(path, state) {
+    exit(path: any, state: any) {
       if (
         state.get("pragmaSet") &&
         state.get("usedFragment") &&

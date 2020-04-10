@@ -3,22 +3,32 @@
 [![NPM Version][npm-image]][npm-url]
 
 
+## Install
+
+```
+npm i -g flutterjsx
+```
+
 
 > Coming soon ... (on development)
 
 Hello Home !
 
-I will run a node.js webserver and watch for .jsx changed after that update .dart file
+As you know <a href='https://flutter.dev'>Flutter</a> comes with dirty syntax, therefore I decided to start developing jsx transpiler for flutter.
 
-As you know better <a href='https://flutter.dev'>Flutter</a> comes with dirty syntax, therefore I decided to start developing jsx for flutter.
+## Usage
 
-> I Uploaded my first tries.
+> cd to your flutter app path
 
-1 - Dart File
+and Run: 
 
+> $ flutterjx
+
+1 - Flutter Widget (flutter_app/lib/HomePage.dart):
 ```
+import 'package:flutter/material.dart';
 class HomePageView extends StatelessWidget {
-  static final jsxView = "./HomePageView.jsx";
+  static final jsxView = "HomePageView.jsx";
   static final spaces = "  ";
 
   build(BuildContext context) {
@@ -27,9 +37,11 @@ class HomePageView extends StatelessWidget {
 }
 
 ```
+jsxView is required.
+spaces is optional.
+// afterBuild is required.
 
-2 - And JSX :) is shown bellow:
-
+2 -JSX (flutter_app/lib/HomePageView.jsx):
 ```
 const style = {
   wrapper: {
@@ -49,22 +61,28 @@ export default (
 );
 ```
 
-3 - Current Output
+3 - Output
 
 > I wish to make it prettier in future.
 
 ```
+import 'package:flutter/material.dart';
+
 class HomePageView extends StatelessWidget {
-  static final jsxView = "./HomePageView.jsx";
+  static final jsxView = "HomePageView.jsx";
   static final spaces = "  ";
 
   build(BuildContext context) {
-  return Container(
-  	child: Text("This is a simple text", style: TextStyle(fontSize: 20)),
-	padding: EdgeInsets.all(32.0),
-	margin: EdgeInsets.only(top:30, bottom:10),
-	color: Color(0xFF000000),
-);
+    return Container(
+      child: Text("This is a simple text",
+          style: TextStyle(
+            fontSize: 15,
+            color: Color(0xFF111111),
+          )),
+      padding: EdgeInsets.all(32.0),
+      margin: EdgeInsets.only(top: 30, bottom: 10),
+      color: Colors.red,
+    );
   }
   // afterBuild
 }
@@ -76,3 +94,7 @@ That's it Javascript + Flutter will kill it.
 
 [npm-image]: https://img.shields.io/npm/v/flutterjsx.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/flutterjsx
+
+## License
+
+WTF.

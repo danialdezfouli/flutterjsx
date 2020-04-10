@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fs, { promises } from "fs";
 const path = require("path");
 

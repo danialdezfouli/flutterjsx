@@ -12,14 +12,11 @@ const fetchValue = (attrs: Array<any>, key: any, replace: any) => {
     value = filter(value);
   }
   if (Attributes.hasOwnProperty(key)) {
+    // @ts-ignore
     value = Attributes[key](value);
   }
   if (typeof value == "object")
-    value = BuildAttributes(
-      value,
-      false,
-      hasNewLine
-    );
+    value = BuildAttributes(value, false, hasNewLine);
 
   replace = replace && (replace[key] || replace.any);
   if (replace) {
@@ -29,7 +26,7 @@ const fetchValue = (attrs: Array<any>, key: any, replace: any) => {
 };
 
 export const BuildAttributes = (
-  attrs,
+  attrs: any,
   replace: any = false,
   newLine = false
 ) => {

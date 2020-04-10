@@ -1,9 +1,14 @@
 {
   "presets": [
-    "@babel/preset-env"
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "esmodules": true
+        }
+      }
+    ],
+    "@babel/preset-typescript"
   ],
-  "plugins": [
-    "@babel/plugin-syntax-jsx",
-    "./src/transform/index.ts"
-  ]
+  "plugins": ["@babel/plugin-syntax-jsx", "./src/transform/index.js"]
 }

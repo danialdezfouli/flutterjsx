@@ -1,38 +1,33 @@
 const fs = require("fs");
 import DartFile from "./DartFile";
 
-const JS = "js";
-const DART = "dart";
+class Compiler {
+  static files: any;
 
-export default class Compiler {
-    file = '';
-    type = '';
-    constructor(file) {
-        this.file = file;
-        if (file.match(/\.jsx?$/)) this.type = JS;
-        else this.type = DART;
+  file: any;
+  type: any;
+  viewFile: string = "";
+
+  constructor(file: string) {
+    this.file = file;
+  }
+
+  run() {
+    if (this.getViewFile()) {
+      let file = new DartFile(this.file, this.viewFile);
     }
+  }
 
-    run() {
-        const {type, file: filePath} = this;
-        if (type === DART) {
-            let viewFile = this.dartFileHasView(filePath);
-            if (viewFile) {
-                let file = new DartFile(filePath, viewFile[1]);
-                // console.table(file);
-                // console.log(file.content);
-            }
-        }
-
+  getViewFile() {
+    const content = fs.readFileSync(this.file, "utf8");
+    const pattern = /^(?!\s*\/\/)\s*static final jsxView\s*=\s*([^;]+)/im;
+    const matched = content.match(pattern);
+    if (matched) {
+      matched[1] = matched[1].replace(/(['"])(.+)\1/, "$2");
     }
-
-    dartFileHasView(file) {
-        const content = fs.readFileSync(file, "utf8");
-        const pattern = /^(?!\s*\/\/)\s*static final jsxView\s*=\s*([^;]+)/im;
-        const mached = content.match(pattern);
-        if (mached) {
-            mached[1] = mached[1].replace(/(['"])(.+)\1/, "$2");
-        }
-        return mached;
-    }
+    this.viewFile = matched && matched[1];
+    return !!matched;
+  }
 }
+
+export default Compiler;

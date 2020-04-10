@@ -1,30 +1,34 @@
-import "@babel/register";
+import * as fs from "fs";
+// import "@babel/plugin-syntax-jsx";
+// import "../transform/index";
+
 import HasChildren from "./HasChildren";
 import * as Builder from "./Builder";
 import { BuildAttributes } from "./AttributesBuilder";
-import fs from "fs";
 
 const path = require("path");
-global.Flutter = require("../Flutter");
+
+const globalAny: any = global;
+globalAny.Flutter = {
+  createElement: (...args: any[]) => args,
+};
 
 export default class DartFile {
-  path;
-  view;
-  constructor(_path, view) {
+  path: string;
+  view: string;
+  constructor(_path: string, view: string) {
     this.path = _path;
     this.view = view;
     const viewPath = path.resolve(_path, "../", view);
-    import(viewPath)
-      .then(({ default: comp }) => {
-        let result = walk(comp).replace(/(.*),$/, "$1");
-        replaceContent(_path, result);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    delete require.cache[require.resolve(viewPath)];
+
+    const comp = require(viewPath).default;
+    let result = walk(comp).replace(/(.*),$/, "$1");
+
+    replaceContent(_path, result);
   }
 }
-function findSpaces(content) {
+function findSpaces(content: string) {
   let spaces;
   spaces = content.match(/static final spaces\s*=\s*(['"])([^\1]+)\1$/);
   if (spaces) spaces = spaces[2];
@@ -37,7 +41,7 @@ function findSpaces(content) {
 
   return spaces;
 }
-function replaceContent(_path, result) {
+function replaceContent(_path: string, result: string) {
   const content = fs.readFileSync(_path, "utf8");
   const spaces = findSpaces(content);
   const pattern = /build\([^)]+\).*\/\/\s?afterBuild/gis;
@@ -49,13 +53,12 @@ ${spaces}// afterBuild`;
   if (content.match(pattern)) {
     const newContent = content.replace(pattern, _buildMethod);
     if (newContent !== content) {
-      console.log(Date.now());
       fs.writeFileSync(_path, newContent);
     }
   }
 }
 
-function walk(comp) {
+function walk(comp: Array<any>): string {
   const [name, attrs, ...children] = comp;
   if (hasAltBuilder(name)) {
     return altBuild(name, comp);
@@ -69,7 +72,7 @@ function walk(comp) {
 ),`;
 }
 
-function renderAttrs(attrs) {
+function renderAttrs(attrs: any) {
   let _attrs = BuildAttributes(
     attrs,
     {
@@ -78,25 +81,27 @@ function renderAttrs(attrs) {
     true
   );
 
-  if (Object.keys(attrs).length > 1) {
+  if (attrs && Object.keys(attrs).length > 1) {
     // _attrs += ",";
   }
 
   return _attrs;
 }
 
-function hasAltBuilder(name) {
+function hasAltBuilder(name: string) {
   return Builder.hasOwnProperty(name);
 }
 
-function altBuild(name, comp) {
+function altBuild(name: any, comp: any) {
+  // @ts-ignore
   if (typeof Builder[name] != "function")
     throw Error(`Builder.${name} is not a function`);
+  // @ts-ignore
   return Builder[name](comp);
 }
 
-function renderChildren(name, children) {
-  let render = [];
+function renderChildren(name: string, children: Array<any>) {
+  let render: any = [];
   if (Array.isArray(children)) {
     render = children.map((_comp: Array<any>) => walk(_comp));
   }
