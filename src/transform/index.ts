@@ -4,10 +4,6 @@ import jsx from "@babel/plugin-syntax-jsx";
 import helper from "@babel/helper-builder-react-jsx";
 import { types as t } from "@babel/core";
 
-interface PluginState {
-  opts: { runtime?: "inline" | "module" };
-}
-
 const DEFAULT = {
   pragma: "Flutter.createElement",
   pragmaFrag: "Flutter.createElement",
