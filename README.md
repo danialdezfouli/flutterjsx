@@ -1,4 +1,8 @@
-#Flutter.js Transpile JSX to dart widgets
+# Flutter.js Transpile JSX to dart widgets
+
+[![NPM Version][npm-image]][npm-url]
+[![NPM Downloads][downloads-image]][downloads-url]
+
 
 > Coming soon ... (on development)
 
@@ -68,3 +72,7 @@ class HomePageView extends StatelessWidget {
 ```
 
 That's it Javascript + Flutter will kill it.
+
+
+[npm-image]: https://img.shields.io/npm/v/flutterjsx.svg?style=flat
+[npm-url]: https://www.npmjs.com/package/flutterjsx
