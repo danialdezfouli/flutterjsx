@@ -46,7 +46,6 @@ const style = {
   wrapper: {
     padding: "32.0",
     margin: { top: 30, bottom: 10 },
-    color: "#000000",
   },
   text: {
     fontSize: 20,
