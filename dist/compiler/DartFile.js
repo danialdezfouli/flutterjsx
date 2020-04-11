@@ -52,16 +52,24 @@ ${spaces}// afterBuild`;
     }
 }
 function walk(comp) {
-    const [name, attrs, ...children] = comp;
+    if (!comp)
+        return "";
+    if (typeof comp == "string") {
+        comp = ["Text", {}, [comp]];
+    }
+    let [name, attrs, ...children] = comp;
     if (hasAltBuilder(name)) {
         return altBuild(name, comp);
     }
-    const builtChildren = renderChildren(name, children);
+    const builtChildren = hasChildren(children)
+        ? renderChildren(name, children)
+        : "";
     const builtAttrs = renderAttrs(attrs);
     return `${name}( 
-  ${builtChildren}${builtAttrs ? ", \n" + builtAttrs : ""}      
+  ${builtChildren}${builtAttrs && builtChildren ? ", \n" : ""}${builtAttrs}
 ),`;
 }
+exports.walk = walk;
 function renderAttrs(attrs) {
     let _attrs = AttributesBuilder_1.BuildAttributes(attrs, {
         any: "%",
@@ -71,6 +79,7 @@ function renderAttrs(attrs) {
     }
     return _attrs;
 }
+exports.renderAttrs = renderAttrs;
 function hasAltBuilder(name) {
     return Builder.hasOwnProperty(name);
 }
@@ -81,18 +90,25 @@ function altBuild(name, comp) {
     // @ts-ignore
     return Builder[name](comp);
 }
-function renderChildren(name, children) {
+function hasChildren(children) {
+    return children && Array.isArray(children) && children.length > 0;
+}
+exports.hasChildren = hasChildren;
+function renderChildren(name, children, childKey = "child") {
     let render = [];
-    if (Array.isArray(children)) {
+    if (children && Array.isArray(children)) {
         render = children.map((_comp) => walk(_comp));
     }
+    if (!render)
+        return "";
     let newChildren;
     if (HasChildren_1.default.includes(name)) {
         newChildren = `\tchildren: [${render.join(", ")}]`;
     }
     else {
-        newChildren = `\tchild: ${render}`;
+        newChildren = `\t${childKey}: ${render}`;
     }
     return newChildren;
 }
+exports.renderChildren = renderChildren;
 //# sourceMappingURL=DartFile.js.map

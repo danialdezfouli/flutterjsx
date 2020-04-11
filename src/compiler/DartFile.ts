@@ -58,21 +58,30 @@ ${spaces}// afterBuild`;
   }
 }
 
-function walk(comp: Array<any>): string {
-  const [name, attrs, ...children] = comp;
+export function walk(comp: Array<any>): string {
+  if (!comp) return "";
+
+  if (typeof comp == "string") {
+    comp = ["Text", {}, [comp]];
+  }
+
+  let [name, attrs, ...children] = comp;
+
   if (hasAltBuilder(name)) {
     return altBuild(name, comp);
   }
 
-  const builtChildren = renderChildren(name, children);
+  const builtChildren = hasChildren(children)
+    ? renderChildren(name, children)
+    : "";
   const builtAttrs = renderAttrs(attrs);
 
   return `${name}( 
-  ${builtChildren}${builtAttrs ? ", \n" + builtAttrs : ""}      
+  ${builtChildren}${builtAttrs && builtChildren ? ", \n" : ""}${builtAttrs}
 ),`;
 }
 
-function renderAttrs(attrs: any) {
+export function renderAttrs(attrs: any) {
   let _attrs = BuildAttributes(
     attrs,
     {
@@ -100,17 +109,26 @@ function altBuild(name: any, comp: any) {
   return Builder[name](comp);
 }
 
-function renderChildren(name: string, children: Array<any>) {
+export function hasChildren(children: any) {
+  return children && Array.isArray(children) && children.length > 0;
+}
+
+export function renderChildren(
+  name: string,
+  children: Array<any>,
+  childKey = "child"
+) {
   let render: any = [];
-  if (Array.isArray(children)) {
+
+  if (children && Array.isArray(children)) {
     render = children.map((_comp: Array<any>) => walk(_comp));
   }
-
+  if (!render) return "";
   let newChildren;
   if (HasChildren.includes(name)) {
     newChildren = `\tchildren: [${render.join(", ")}]`;
   } else {
-    newChildren = `\tchild: ${render}`;
+    newChildren = `\t${childKey}: ${render}`;
   }
 
   return newChildren;

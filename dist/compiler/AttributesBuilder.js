@@ -1,19 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Attributes = require("./Attributes");
-const AttributesFilter = require("./AttributesFilter");
+// import * as AttributesFilter from "./AttributesFilter";
 const fetchValue = (attrs, key, replace) => {
     let hasNewLine = Object.keys(attrs).length > 1;
     let rawValue = attrs[key];
     let value = rawValue;
     if (typeof value == "undefined")
         return;
-    for (let filter of Object.values(AttributesFilter)) {
-        value = filter(value);
-    }
     if (Attributes.hasOwnProperty(key)) {
         // @ts-ignore
-        value = Attributes[key](value);
+        return Attributes[key](value);
     }
     if (typeof value == "object")
         value = exports.BuildAttributes(value, false, hasNewLine);
@@ -44,5 +41,6 @@ exports.BuildAttributes = (attrs, replace = false, newLine = false) => {
         }
         return r.join(", ");
     }
+    return "";
 };
 //# sourceMappingURL=AttributesBuilder.js.map

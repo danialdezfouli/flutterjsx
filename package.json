@@ -1,6 +1,6 @@
 {
   "name": "flutterjsx",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "description": "Jsx in Javascript View For Flutter.dart",
   "main": "src/app.ts",
   "types": "dist/index.d.ts",
@@ -31,22 +31,22 @@
   "author": "Daniel Dezfouli",
   "license": "MIT",
   "devDependencies": {
-    "@babel/types": "^7.9.5"
+    "@babel/types": "^7.9.5",
+    "@types/node": "^13.11.1",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/plugin-syntax-jsx": "^7.8.3",
     "@babel/core": "^7.9.0",
     "@babel/generator": "^7.9.5",
+    "@babel/helper-builder-react-jsx": "^7.9.0",
     "@babel/helper-builder-react-jsx-experimental": "^7.9.5",
     "@babel/helper-plugin-utils": "^7.8.3",
-    "@babel/preset-react": "^7.9.4",
+    "@babel/plugin-syntax-jsx": "^7.8.3",
+    "@babel/preset-env": "^7.9.5",
     "@babel/preset-typescript": "^7.9.0",
     "@babel/register": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
-    "@types/node": "^13.11.1",
-    "chokidar": "^3.3.1",
-    "ts-node-dev": "^1.0.0-pre.44",
-    "typescript": "^3.8.3"
+    "chokidar": "^3.3.1"
   }
 }

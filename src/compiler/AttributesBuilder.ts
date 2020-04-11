@@ -1,5 +1,5 @@
 import * as Attributes from "./Attributes";
-import * as AttributesFilter from "./AttributesFilter";
+// import * as AttributesFilter from "./AttributesFilter";
 
 const fetchValue = (attrs: Array<any>, key: any, replace: any) => {
   let hasNewLine = Object.keys(attrs).length > 1;
@@ -8,13 +8,11 @@ const fetchValue = (attrs: Array<any>, key: any, replace: any) => {
 
   if (typeof value == "undefined") return;
 
-  for (let filter of Object.values(AttributesFilter)) {
-    value = filter(value);
-  }
   if (Attributes.hasOwnProperty(key)) {
     // @ts-ignore
-    value = Attributes[key](value);
+    return Attributes[key](value);
   }
+  
   if (typeof value == "object")
     value = BuildAttributes(value, false, hasNewLine);
 
@@ -51,4 +49,5 @@ export const BuildAttributes = (
     }
     return r.join(", ");
   }
+  return "";
 };

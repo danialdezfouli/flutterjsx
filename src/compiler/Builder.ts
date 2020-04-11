@@ -1,4 +1,5 @@
 import { BuildAttributes } from "./AttributesBuilder";
+import { hasChildren, renderAttrs, renderChildren } from "./DartFile";
 
 export const Text = ([, attrs, text]: any) => {
   if (attrs && attrs.text && !text) {
@@ -13,3 +14,13 @@ export const Text = ([, attrs, text]: any) => {
   return `Text(${text}${_attrs ? ", " + _attrs : ""})`;
 };
 
+export const Scaffold = ([name, attrs, ...body]: any) => {
+  const builtChildren = hasChildren(body)
+    ? renderChildren(name, body, "body")
+    : "";
+  const builtAttrs = renderAttrs(attrs);
+
+  return `Scaffold(
+    ${builtAttrs}${builtChildren}
+  )`;
+};
