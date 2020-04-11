@@ -9,8 +9,7 @@
 npm i -g flutterjsx
 ```
 
-
-> Coming soon ... (on development)
+> Alpha Version
 
 Hello Home !
 
@@ -55,11 +54,25 @@ const style = {
 };
 
 export default (
-  <Container {...style.wrapper}>
+  <Container
+    {...style.wrapper}
+    decoration={<BoxDecoration borderRadius={{ topLeft: 20 }} color="#111" />
+  >
     <Text style={style.text} text={"This is a simple text"} />
   </Container>
 );
 ```
+
+Other ways:
+
+```
+<Container decoration={<BoxDecoration borderRadius={10} color="#111" />}/>
+<Container decoration={<BoxDecoration borderRadius={'50 50 0 0'} color="#111" />}/>
+
+```
+
+> and after save hit (ctrl + f5 in vscode) to force hot reload.
+
 
 3 - Output
 
