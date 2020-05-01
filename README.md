@@ -18,7 +18,7 @@ As you know <a href='https://flutter.dev'>Flutter</a> comes with dirty syntax, t
 
 ## Usage
 
-> cd to your flutter app path
+> $ cd YOUR_FLUTTER_APP_PATH
 
 and Run: 
 
