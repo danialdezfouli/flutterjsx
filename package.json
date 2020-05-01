@@ -1,6 +1,6 @@
 {
   "name": "flutterjsx",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Jsx in Javascript View For Flutter.dart",
   "main": "src/app.ts",
   "types": "dist/index.d.ts",

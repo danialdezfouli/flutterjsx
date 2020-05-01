@@ -8,7 +8,7 @@
 npm i -g flutterjsx
 ```
 
-> Alpha Version
+> Beta Version
 
 Hello Home !
 
