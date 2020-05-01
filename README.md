@@ -2,10 +2,6 @@
 
 [![NPM Version][npm-image]][npm-url]
 
-
-Youtube
-
-
 ## Install
 
 ```
