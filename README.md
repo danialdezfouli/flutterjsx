@@ -3,6 +3,9 @@
 [![NPM Version][npm-image]][npm-url]
 
 
+Youtube
+
+
 ## Install
 
 ```
@@ -13,7 +16,9 @@ npm i -g flutterjsx
 
 Hello Home !
 
-As you know <a href='https://flutter.dev'>Flutter</a> comes with dirty syntax, therefore I decided to start developing jsx transpiler for flutter.
+As you know <a href='https://flutter.dev'>Flutter</a> comes with dirty syntax, therefore I decided to develop jsx transpiler for flutter.
+
+<a href='https://www.youtube.com/watch?v=Oj1JMSurphA'>Demo in Youtube</a> 
 
 ## Usage
 
@@ -37,7 +42,9 @@ class HomePageView extends StatelessWidget {
 
 ```
 jsxView is required.
+
 spaces is optional.
+
 // afterBuild is required.
 
 2 -JSX (flutter_app/lib/HomePageView.jsx):
